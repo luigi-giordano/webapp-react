@@ -1,5 +1,6 @@
 import { useGlobalContext } from "../context/GlobalContext"
 import { useEffect } from "react"
+import MovieCard from "../components/MovieCard"
 
 function HomePage() {
 
@@ -11,7 +12,7 @@ function HomePage() {
         <div className="col"
           key={movie.id}
         >
-          {movie.title}
+          <MovieCard movieData={movie} />
         </div>
       )
     })
