@@ -1,11 +1,20 @@
-import { Children, createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
 const GlobalContext = createContext()
 
 const GlobalProvider = ({ children }) => {
 
-  const value = {}
+  const api_url = import.meta.env.VITE_API_URL
+
+  const fetchMovies = () => {
+    console.log(api_url);
+
+  }
+
+  const value = {
+    fetchMovies
+  }
 
   return (
     <GlobalContext.Provider value={value}>
