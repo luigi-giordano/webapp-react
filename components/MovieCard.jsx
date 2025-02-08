@@ -1,8 +1,8 @@
 import PropTypes from "prop-types"
-
+import { Link } from "react-router-dom"
 function MovieCard({ movieData }) {
 
-  const { title, director, genre, abstract, image, vote } = movieData
+  const { id, title, director, genre, abstract, image, vote } = movieData
 
   return (
 
@@ -14,6 +14,9 @@ function MovieCard({ movieData }) {
         <address><i>By {director}</i></address>
         <span className="card-text">{abstract || ''}</span>
         <p className="card-text">Voto: {vote}</p>
+      </div>
+      <div className="my-3 d-flex justify-content-center">
+        <Link to={`movies/${id}`} className="btn btn-primary">Visualizza Recensioni</Link>
       </div>
     </div>
   )
