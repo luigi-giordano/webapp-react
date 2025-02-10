@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { useGlobalContext } from "../context/GlobalContext"
 import ReviewCard from "../components/ReviewCard"
@@ -12,7 +12,7 @@ function MovieDetailPage() {
     return movie?.reviews?.map(item => <ReviewCard key={item.id} review={item} />) || null
   }
 
-  useEffect(() => fetchMovie(id), [id, fetchMovie])
+  useEffect(() => fetchMovie(id), [id])
 
   return (
     <>
@@ -34,7 +34,7 @@ function MovieDetailPage() {
       </section>
 
       <section>
-        <ReviewForm movie_id={movie.id} />
+        <ReviewForm movie_id={movie.id} fetchData={fetchMovie} />
       </section>
 
       <footer>

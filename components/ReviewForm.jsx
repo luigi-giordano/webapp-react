@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
-function ReviewForm({ movie_id }) {
+function ReviewForm({ movie_id, fetchData }) {
 
   const api_url = `${import.meta.env.VITE_API_URL}/${movie_id}/reviews`
 
@@ -11,13 +13,34 @@ function ReviewForm({ movie_id }) {
   }
 
   const [formData, setFormData] = useState(initialFormData)
+  const [erroMessage, setErrorMessage] = useState('')
+
+  const validateForm = () => {
+    if (!formData.name || !formData.text) return false
+    if (isNaN(formData.vote) || formData.vote < 1 || formData.vote > 5) return false
+    return true
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData);
+    if (!validateForm()) {
+      setErrorMessage('Attenzione compila tutti i campi in maniera corretta')
+      return
+    }
 
-
+    axios.post(api_url, formData, { headers: { 'Content-Type': 'application/json' } })
+      .then(res => {
+        console.log(res.data);
+        setFormData(initialFormData)
+        setErrorMessage('')
+        fetchData(movie_id)
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
+
 
 
   const setFieldValue = (e) => {
@@ -31,6 +54,7 @@ function ReviewForm({ movie_id }) {
         <h1>Aggiungi una nuova recensione</h1>
       </header>
       <div className="card-body">
+        <p className="text-danger">{erroMessage}</p>
         <form action="#" onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Nome</label>

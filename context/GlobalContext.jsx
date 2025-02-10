@@ -22,6 +22,7 @@ const GlobalProvider = ({ children }) => {
     axios.get(`${api_url}${id}`)
       .then(res => {
         console.log(res.data);
+
         setMovie(res.data)
       })
       .catch(err => console.log(err))
