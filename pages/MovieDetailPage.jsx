@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useEffect } from "react"
 import { useGlobalContext } from "../context/GlobalContext"
 import ReviewCard from "../components/ReviewCard"
@@ -8,10 +8,10 @@ function MovieDetailPage() {
   const { movie, fetchMovie } = useGlobalContext()
 
   const renderReviews = () => {
-    return movie.reviews.map(item => <ReviewCard key={item.id} review={item} />)
+    return movie?.reviews?.map(item => <ReviewCard key={item.id} review={item} />) || null
   }
 
-  useEffect(() => fetchMovie(id), [])
+  useEffect(() => fetchMovie(id), [id, fetchMovie])
 
   return (
     <>
@@ -29,10 +29,12 @@ function MovieDetailPage() {
       </header>
 
       <section>
-        {movie && renderReviews()}
+        {movie.reviews && renderReviews()}
       </section>
 
-      <footer>Bottone per tornare indietro</footer>
+      <footer>
+        <Link to='/' className="btn btn-primary" > Torna all'elenco FIlm</Link>
+      </footer>
 
     </>
   )
