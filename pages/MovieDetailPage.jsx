@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom"
 import { useEffect } from "react"
 import { useGlobalContext } from "../context/GlobalContext"
 import ReviewCard from "../components/ReviewCard"
+import ReviewForm from "../components/ReviewForm"
 
 function MovieDetailPage() {
   const { id } = useParams()
@@ -30,6 +31,10 @@ function MovieDetailPage() {
 
       <section>
         {movie.reviews && renderReviews()}
+      </section>
+
+      <section>
+        <ReviewForm movie_id={movie.id} />
       </section>
 
       <footer>
