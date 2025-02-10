@@ -3,3 +3,7 @@
   max-width: 100%;
   object-fit: cover;
 }
+
+.img-movie-top {
+  height: 400px;
+}
