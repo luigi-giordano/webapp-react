@@ -66,7 +66,6 @@ function CreateMovie() {
                 name="image"
                 type="file"
                 placeholder="Inserisci un immagine"
-                value={formData.image}
                 onChange={handleSetValue}
               />
             </div>
