@@ -6,7 +6,7 @@ function Header() {
       <nav className="navbar">
         <div className="container-fluid">
           <img src="/logo.png" alt="BOOLFLIX" style={{ maxWidth: '150px', height: 'auto' }} />
-          <Link className="btn btn-primary" to="/movies/create">Aggiungi Film</Link>
+          <Link className="btn btn-danger" to="/movies/create">Aggiungi Film</Link>
         </div>
       </nav>
 
