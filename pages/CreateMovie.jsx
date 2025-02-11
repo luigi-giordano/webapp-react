@@ -11,11 +11,24 @@ function CreateMovie() {
   const [formData, setFormData] = useState(initialData)
 
   const handleSetValue = (e) => {
-    console.log(e.target);
-  }
+    const { value, name } = e.target;
+    if (name === 'image') {
+      setFormData(prev => ({ ...prev, image: e.target.files[0] }))
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value, }))
+    }
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(formData);
+
+    const dataToSend = new FormData()
+    console.log(dataToSend);
+    for (let key in formData)
+      dataToSend.append(key, formData[key])
+
   }
 
 
