@@ -20,7 +20,7 @@ function CreateMovie() {
     if (name === 'image') {
       setFormData(prev => ({ ...prev, image: e.target.files[0] }))
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value, }))
+      setFormData((prev) => ({ ...prev, [name]: value }))
     }
   };
 
