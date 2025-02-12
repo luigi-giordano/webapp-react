@@ -24,7 +24,6 @@ function CreateMovie() {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData);
@@ -42,7 +41,6 @@ function CreateMovie() {
       .catch((err) => console.log(err))
   }
 
-
   return (
     <div className="card">
 
@@ -51,6 +49,7 @@ function CreateMovie() {
       </header>
 
       <section className="card-body">
+
         <form action="#" onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Titolo</label>
