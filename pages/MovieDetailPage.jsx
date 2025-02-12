@@ -7,6 +7,7 @@ import ReviewForm from "../components/ReviewForm"
 function MovieDetailPage() {
   const { id } = useParams()
   const { movie, fetchMovie, deleteMovie } = useGlobalContext()
+  const redirect = useNavigate()
 
   const renderReviews = () => {
     return movie?.reviews?.map(item => <ReviewCard key={item.id} review={item} />) || null
@@ -29,9 +30,13 @@ function MovieDetailPage() {
           <button className="btn btn-danger my-3" onClick={() => {
             if (confirm('Sei sicuro di voler eliminare il Film dal database?')) {
               console.log('ELIMINA');
-              deleteMovie(movie.id, redirect('/'))
+              deleteMovie(movie.id, () => redirect('/'))
             }
-          }}>Elimina Film</button>
+          }}
+          >
+            Elimina Film
+          </button>
+
         </div>
       </header>
 

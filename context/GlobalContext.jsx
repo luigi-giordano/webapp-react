@@ -29,7 +29,7 @@ const GlobalProvider = ({ children }) => {
   }
 
   const deleteMovie = (id, cb) => {
-    axios.delete(`${api_url}/${id}}`)
+    axios.delete(`${api_url}/${id}`)
       .then(res => cb())
       .catch(err => console.log(err))
   }
