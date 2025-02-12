@@ -2,8 +2,8 @@
 function Loader() {
   return (
     <div className="overlay">
-      <div className="spinner-borde"></div>
-
+      <div className="spinner-border text-primary" role="status">
+      </div>
     </div>
   )
 }

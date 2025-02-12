@@ -1,8 +1,11 @@
 import { useState } from "react"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../context/GlobalContext";
 
 function CreateMovie() {
+
+  const { setIsLoading } = useGlobalContext()
 
   const api_url = import.meta.env.VITE_API_URL
   const navigate = useNavigate()
@@ -34,11 +37,12 @@ function CreateMovie() {
     for (let key in formData) {
       dataToSend.append(key, formData[key])
     }
-
+    setIsLoading(true)
     axios
       .post(api_url, dataToSend, { headers: { 'Content-Type': 'multipart/form-data' } })
       .then(() => navigate('/'))
       .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false))
   }
 
   return (

@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { useGlobalContext } from "../context/GlobalContext"
 
 function ReviewForm({ movie_id, fetchData }) {
+
+  const { setIsLoading } = useGlobalContext()
 
   const api_url = `${import.meta.env.VITE_API_URL}/${movie_id}/reviews`
 
@@ -28,7 +31,7 @@ function ReviewForm({ movie_id, fetchData }) {
       setErrorMessage('Attenzione compila tutti i campi in maniera corretta')
       return
     }
-
+    setIsLoading(true)
     axios.post(api_url, formData, { headers: { 'Content-Type': 'application/json' } })
       .then(res => {
         console.log(res.data);
@@ -39,9 +42,8 @@ function ReviewForm({ movie_id, fetchData }) {
       .catch(err => {
         console.log(err);
       })
+      .finally(() => setIsLoading(false))
   }
-
-
 
   const setFieldValue = (e) => {
     const { value, name } = e.target
