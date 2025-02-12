@@ -1,8 +1,11 @@
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
+import StarRating from "./StarRating";
+
+
 function MovieCard({ movieData }) {
 
-  const { id, title, director, genre, abstract, image, vote } = movieData
+  const { id, title, director, genre, abstract, image, vote, rating } = movieData
 
   return (
 
@@ -13,7 +16,8 @@ function MovieCard({ movieData }) {
         <span className="card-genre">{genre}</span>
         <address><i>By {director}</i></address>
         <span className="card-text">{abstract || ''}</span>
-        <p className="card-text">Voto: {vote}</p>
+        <StarRating rating={rating} />
+
       </div>
       <div className="my-3 d-flex justify-content-center">
         <Link to={`movies/${id}`} className="btn btn-primary">Visualizza Recensioni</Link>

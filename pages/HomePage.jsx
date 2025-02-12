@@ -2,6 +2,7 @@ import { useGlobalContext } from "../context/GlobalContext"
 import { useEffect } from "react"
 import MovieCard from "../components/MovieCard"
 
+
 function HomePage() {
 
   const { fetchMovies, movies } = useGlobalContext()
