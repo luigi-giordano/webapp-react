@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
 
 const GlobalContext = createContext()
@@ -20,7 +19,7 @@ const GlobalProvider = ({ children }) => {
   }
 
   const fetchMovie = (id) => {
-    axios.get(`${api_url}${id}`)
+    axios.get(`${api_url}/${id}`)
       .then(res => {
         console.log(res.data);
 
@@ -29,11 +28,18 @@ const GlobalProvider = ({ children }) => {
       .catch(err => console.log(err))
   }
 
+  const deleteMovie = (id, cb) => {
+    axios.delete(`${api_url}/${id}}`)
+      .then(res => cb())
+      .catch(err => console.log(err))
+  }
+
   const value = {
     fetchMovies,
     movies,
     fetchMovie,
-    movie
+    movie,
+    deleteMovie
   }
 
   return (
